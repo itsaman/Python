@@ -1,2 +1,2 @@
-# Web-Scraping
-Web Scraping using python
+# Python
+Using python
