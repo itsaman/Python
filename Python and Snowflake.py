@@ -1,3 +1,4 @@
+#Connecting to snowflake by python
 import snowflake.connector
 
 crr = snowflake.connector.connect(
@@ -14,7 +15,21 @@ cs.execute("select * from world_bank")
 one_row = cs.fetchone()
 print(one_row)
 
-#Using Write Pandas to load the data
+#USING WRITE PANDAS METHOD
+
+import pandas as pd
+import snowflake.connector as snow
+from snowflake.connector.pandas_tools import write_pandas
+
+#connection
+conn = snow.connect(
+    user = '###',
+    password='###',
+    account = 'vy13440.ap-south-1.aws',
+    warehouse = 'COMPUTE_WH',
+    database = 'AZURE_DB',
+    schema = 'LOADING' 
+)
 cur = conn.cursor()
 
 sql = "select * from world_bank limit 10"
@@ -48,7 +63,7 @@ write_pandas(conn, total, "SNOWPY")
 
 
 
-#another  write pandas example
+#ANOTHER WRITE PANDAS
 
 #cursor
 cur = conn.cursor()
