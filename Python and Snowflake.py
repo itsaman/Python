@@ -112,6 +112,32 @@ esg.head()
 write_pandas(conn, esg, "ESG_DATA")
 
 
+### PUTTING FILES FROM PANDAS TO SNOWFLAKE
+cur = conn.cursor()
+
+cur.execute(r"PUT file://C:\Users\anshi\Documents\Python_code\dataset\cars.csv @BANK_STAG")
+one_row = cur.fetchone()
+print(one_row)
 
 
+### Executing rows
+csv_lis = []
+cur.execute("list @BANK_STAG")
+for row in cur:
+    csv_lis.append(row[0])
 
+csv_lis
+
+
+#### Reading sql query into dataframe
+query = "select * from ESG_DATA"
+df = pd.read_sql(query,conn)
+df.head()
+
+
+#### executing many sql statements
+sql_file = r'C:\Users\anshi\Documents\Python_code\dataset\insert.sql'
+
+with open(sql_file, 'r',encoding  = 'utf-8') as f:
+    for row in conn.execute_stream(f):
+        print(row)
