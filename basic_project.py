@@ -33,6 +33,7 @@ k,j,l=0,0,0
 if len(mail)>=6:
     if mail[0].isalpha():
         if mail.count("@") == 1 and "@" in mail:
+            
             if (mail[-3] == ".") ^ (mail[-4] == "."):
                 for i in mail:
                     if i == i.isspace():
@@ -57,3 +58,27 @@ if len(mail)>=6:
         print ("Invalid Email, write Alpha first")
 else:
     print("Invalid Email, length issue")
+    
+    
+    
+#Email validation using Regex
+
+# a-z
+# 0-9
+# . _ comes only 1 time
+# . this comes after 2nd or 3rd position
+
+import re
+email_cond = "^[a-z]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$"
+# ?: it will check if .,_ are one or zero
+# ^: check first character
+# \w: this will search in the string
+# [.]\w{2,3}: searching . in 2 and 3 position
+# $: traversing from behind
+
+user_email = input("Enter your email : ")
+
+if re.search(email_cond, user_email):
+    print("Right Email")
+else:
+    print("Wronge Email")
