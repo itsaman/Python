@@ -82,3 +82,53 @@ if re.search(email_cond, user_email):
     print("Right Email")
 else:
     print("Wronge Email")
+
+    
+    
+ #typing speed calculator
+
+from time import *
+import random as rd
+
+
+def mistake(test, user):
+    err = 0
+    for i in range(len(test)):
+            try: 
+                if test[i] != user[i]:
+                    err = err+1
+            except:
+                 err = err+1
+    return err
+
+def time_diff(user_s, user_e):
+    time_diff = user_e - user_s
+    time_r = round(time_diff,2)
+    return time_r
+
+
+def speed(user_s, user_e, user_inp):
+    time_diff = user_e - user_s
+    time_r = round(time_diff,2)
+    speed = len(user_inp)/time_r
+    return round(speed)
+
+
+test = ["Greed is not good for you. Be content and satisfied to lead a happy and fulfilling life","When you work hard and persevere, you can achieve your goals. Slow and steady wins the race","Don’t play with people’s trust, when it matters the most, they won’t believe you"]
+
+stat = rd.choice(test)
+
+print("****Typing Master****")
+print(stat)
+print()
+print()
+time_1 = time()
+user = input(" Enter: ")
+print(user)
+time_2 = time()
+
+print()
+print("Time taken:", time_diff(time_1,time_2))
+print("Speed: ", speed(time_1,time_2,user),"w/sec" )
+print("Errors: ", mistake(test, user))
+
