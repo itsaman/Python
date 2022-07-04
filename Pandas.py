@@ -52,3 +52,40 @@ changed_name = { "Ram":"Shyam",
 
 df=df.replace({"First_name":changed_name})
 df
+
+#Construct a DataFrame in Pandas using string data
+from io import StringIO
+
+StringData =StringIO("""Date;Event;Cost
+    10/2/2011;Music;10000
+    11/2/2011;Poetry;12000
+    12/2/2011;Theatre;5000
+    13/2/2011;Comedy;8000
+    """)
+
+df = pd.read_csv(StringData, sep = ";")
+df
+
+#Clean the string data in the given Pandas Dataframe
+
+df = pd.DataFrame({'Date':['10/2/2011', '11/2/2011', '12/2/2011', '13/2/2011'],
+                   'Product':[' UMbreLla', '  maTress', 'BaDmintoN ', 'Shuttle'],
+                   'Updated_Price':[1250, 1450, 1550, 400],
+                   'Discount':[10, 8, 15, 10],
+                   'Quantity':[2,4,5,1]
+                   })
+
+def format_name(df):
+    for i in range(df.shape[0]):
+        df.iat[i, 1] = df.iat[i,1].strip().capitalize()
+    return df
+
+format_name(df)
+
+# or we can use apply 
+
+df['Product'] = df['Product'].apply(lambda x: x.strip().capitalize())
+df
+
+df['Quantity'] = df['Quantity'].apply(lambda x: x+1)
+df
