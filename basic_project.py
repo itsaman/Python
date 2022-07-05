@@ -132,3 +132,5 @@ print("Time taken:", time_diff(time_1,time_2))
 print("Speed: ", speed(time_1,time_2,user),"w/sec" )
 print("Errors: ", mistake(test, user))
 
+
+--
